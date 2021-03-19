@@ -32,7 +32,7 @@ const RootQuery=new GraphQLObjectType({
         getAllfokontany:{
             type: new GraphQLList(FokontanyType),
             async resolve(parentValue, args){
-                const allFokontany= await Fokontany.find().limit(21); //.limit(50);
+                const allFokontany= await Fokontany.find(); //.limit(50);
                 return allFokontany;                
             }
         },        

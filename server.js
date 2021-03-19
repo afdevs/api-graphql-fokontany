@@ -19,15 +19,15 @@ mongoose.connect(process.env.DB_CONNECTION,
         if(succ){
             const fokontanyFile = fs.readFileSync(__dirname + '/src/data/fokotany.json', 'utf-8');
             const allFokontany= JSON.parse(fokontanyFile);
-            
+
             //Population data to mongodb from the json file
             loadMeetings();
             async function loadMeetings() {
             try {
+                await Fokontany.deleteMany();
                 await Fokontany.insertMany(allFokontany);
-                process.exit();
             } catch(e) {
-                process.exit();
+                console.logI(e);
             }
 
             }
