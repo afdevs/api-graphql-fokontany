@@ -11,6 +11,7 @@ const Fokontany= require('./models/Fokontany');
 const FokontanyType= new GraphQLObjectType({
     name: 'Fokontany', 
     fields:{
+        _id: {type: GraphQLString},
         ADM0_PCODE: {type: GraphQLString},
         ADM0_EN: {type: GraphQLString},
         ADM1_PCODE: {type: GraphQLString},
@@ -31,17 +32,17 @@ const RootQuery=new GraphQLObjectType({
         getAllfokontany:{
             type: new GraphQLList(FokontanyType),
             async resolve(parentValue, args){
-                const allFokontany= await Fokontany.find();
+                const allFokontany= await Fokontany.find().limit(21); //.limit(50);
                 return allFokontany;                
             }
         },        
         getfokontany:{
             type: FokontanyType,
             args:{
-                _ID: {type: GraphQLString}
+                _id: {type: GraphQLString}
             },
             async resolve(parentValue, args){
-                 const aFokontany= await Fokontany.findById({_id: args._ID});
+                 const aFokontany= await Fokontany.findById({_id: args._id});
                  return aFokontany;                
             }
         },              
@@ -51,7 +52,7 @@ const RootQuery=new GraphQLObjectType({
                 PAGE: {type: GraphQLInt},
             },
             async resolve(parentValue, args){
-                const pageSize = 3;
+                const pageSize = 20;
                 const currentPage = args.PAGE;
                 const listFokontany = await Fokontany.find() 
                 .skip(pageSize * (currentPage - 1)) 
@@ -101,7 +102,7 @@ const mutation= new GraphQLObjectType({
         updateFokontany:{
             type: FokontanyType,
             args:{
-                _ID:{type: new GraphQLNonNull(GraphQLString)},
+                _id:{type: new GraphQLNonNull(GraphQLString)},
                 ADM0_PCODE: {type: GraphQLString},
                 ADM0_EN: {type: GraphQLString},
                 ADM1_PCODE: {type: GraphQLString},
@@ -114,7 +115,7 @@ const mutation= new GraphQLObjectType({
                 ADM4_EN: {type: GraphQLString}
             },
             async resolve(parentValue, args){
-                const updatedFokontany= await Fokontany.updateOne({_id: args._ID },{
+                const updatedFokontany= await Fokontany.updateOne({_id: args._id },{
                     ADM0_PCODE:args.ADM0_PCODE,
                     ADM0_EN:args.ADM0_EN,
                     ADM1_PCODE:args.ADM1_PCODE,
@@ -133,10 +134,10 @@ const mutation= new GraphQLObjectType({
         deleteFokontany:{
             type: new GraphQLList(FokontanyType),
             args:{
-                _ID: {type: new GraphQLNonNull(GraphQLString)}
+                _id: {type: new GraphQLNonNull(GraphQLString)}
             },
             async resolve(parentValue, args){
-                const removedFokontany= await Fokontany.deleteOne({_id: args._ID}).then(res=> res.data);
+                const removedFokontany= await Fokontany.deleteOne({_id: args._id}).then(res=> res.data);
                 return removedFokontany;
             }
         }

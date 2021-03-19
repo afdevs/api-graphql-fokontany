@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev:server": "nodemon server.js"
+    "dev:server": "nodemon server.js",
+    "prod:server": "node server.js"
   },
   "author": "Fredo Andrianaivo",
   "license": "ISC",

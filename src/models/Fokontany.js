@@ -1,6 +1,9 @@
 const mongoose= require('mongoose');
 
 const FokontanySchema= mongoose.Schema({
+    id:{
+        type: String
+    },
     ADM0_PCODE: {
         type: String, 
         required: true
