@@ -44,5 +44,5 @@ J'essaie d'insérer toutes les données incluses dans le fichier fokontany JSON 
 
 
 > J'ai pas mal utilisé `async/wait` pour les requêtes non bloquante.   
-> Ceci est réglé maintenant, je viens trouvés le problème -> Un problème que j'ai remarqué sur la récupération de données avec `getAllFokontany` c'est que des fois ça lague et ça provoque une erreur. Je pense que c'est lié au nombre de données récupérées car si on limite les données à récupéré, il n'y a aucun problème. 
+> Ceci est réglé maintenant, je viens de trouvé le problème -> Un problème que j'ai remarqué sur la récupération de données avec `getAllFokontany` c'est que des fois ça lague et ça provoque une erreur. Je pense que c'est lié au nombre de données récupérées car si on limite les données à récupéré, il n'y a aucun problème. 
 
