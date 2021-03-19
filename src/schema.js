@@ -7,11 +7,6 @@ const {
     GraphQLNonNull
 }= require('graphql');
 const Fokontany= require('./models/Fokontany');
-// let fokontanyData = require('../data/fokotany.json');
-// function loadingData(){
-//     let fokontanyData = require('../');
-
-// }
 
 const FokontanyType= new GraphQLObjectType({
     name: 'Fokontany', 
@@ -47,8 +42,7 @@ const RootQuery=new GraphQLObjectType({
             },
             async resolve(parentValue, args){
                  const aFokontany= await Fokontany.findById({_id: args._ID});
-                 return aFokontany;
-                
+                 return aFokontany;                
             }
         },              
         getPagefokontany:{
